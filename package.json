@@ -1,0 +1,16 @@
+{
+  "name": "rackspace-monitoring-js",
+  "version": "0.0.0",
+  "description": "Virgo.js agents connecting to Monitoring endpoints",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "virgo",
+    "agents",
+    "rackspace"
+  ],
+  "author": "Eugenia Gabrielova <genia.likes.science@gmail.com> (http://eugeniagabrielova.com/)",
+  "license": "Apache2"
+}
