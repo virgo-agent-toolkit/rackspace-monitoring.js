@@ -8,20 +8,30 @@ Instructions
 
 Clone rackspace-monitoring.js to obtain a local copy (you could also use the ssh url here). 
 
-    $ git clone ???? rackspace-monitoring-js
+    $ git clone https://github.com/virgo-agent-toolkit/rackspace-monitoring.js.git rackspace-monitoring.js
 
-Navigate to your new directory and install dependencies.
+Navigate to your new directory and install dependencies. This will change slightly once the virgo.js module
+is published to npm. 
 
-    $ cd rackspace-monitoring-js
+    $ cd rackspace-monitoring.js
     $ npm install
 
-Replace the credentials with your own agent token and id.
+Install Virgo.js
 
-    TODO
+    $ npm install git+https://git@github.com:virgo-agent-toolkit/virgo.js.git
+    $ cd node_modules/virgo.js
+    $ npm install
+    $ make
+
+Copy the example config file, and replace the example credentials (username and API key) with your own. To obtain
+your API key, log into your cloud account and go to your account settings.
+
+    $ cp config.js.example config.js
+    $ vi config.js
 
 Run the example
 
-    TODO
+    $ node index.js
 
 License
 =======

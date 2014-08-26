@@ -1,0 +1,7 @@
+var config = {};
+
+config.accountId = '1234';
+config.username = 'YOUR_USERNAME';
+config.apiKey = 'YOUR_APIKEY';
+
+module.exports = config;
