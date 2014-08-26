@@ -18,7 +18,7 @@ is published to npm.
 
 Install Virgo.js
 
-    $ npm install git+https://git@github.com:virgo-agent-toolkit/virgo.js.git
+    $ npm install git+https://git@github.com/virgo-agent-toolkit/virgo.js
     $ cd node_modules/virgo.js
     $ npm install
     $ make
@@ -32,6 +32,14 @@ your API key, log into your cloud account and go to your account settings.
 Run the example
 
     $ node index.js
+
+Docker Instructions
+============    
+Copy the example config file, and replace the example credentials (username and API key) with your own. To obtain
+your API key, log into your cloud account and go to your account settings. Keep your creds in config.example
+
+    $ docker build -t your_tag .
+    $ docker run [hash_from_build_stage] nodejs index.js
 
 License
 =======
