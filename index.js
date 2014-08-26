@@ -23,10 +23,11 @@ async.auto([
     }
 
     identityClient.sendAuthenticatedApiRequest(agentServiceApiUrl, "GET", {}, function(err, agentTokenList) {
-      var virgoJsAgents; 
-        
-      virgoJsAgents = agentTokenList.values.filter(filterByVirgoAgentLabel);
-      if (virgoJsAgents.length == 0) {
+      var virgoJsAgents;
+      
+      if (agentTokenList.values) {
+        virgoJsAgents = agentTokenList.values.filter(filterByVirgoAgentLabel);
+      } else if (!virgoJsAgents) {
         identityClient.sendAuthenticatedApiRequest(agentServiceApiUrl, "POST", {label: agentLabel}, callback);
       } else {
         callback(err);
