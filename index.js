@@ -6,12 +6,31 @@ var identity = require('./lib/identity');
 
 
 var identityClient = identity.createClient(config.username, config.apiKey);
-    accountId = config.accountId;
-    
-async.series([
+    accountId = config.accountId,
+    agentServiceApiUrl = 'https://monitoring.api.rackspacecloud.com/v1.0/' + accountId + '/agent_tokens',
+    agentLabel = 'virgo-js-agent';
+
+async.auto([
   function getIdentityToken(callback) {
     identityClient.getToken(function(err, token) {
       callback(err, token);
+    });
+  },
+
+  function createAgentTokenIfNoneExists(callback) {
+    function filterByVirgoAgentLabel(agentToken) {
+      return agentToken.label == agentLabel;
+    }
+
+    identityClient.sendAuthenticatedApiRequest(agentServiceApiUrl, "GET", {}, function(err, agentTokenList) {
+      var virgoJsAgents; 
+        
+      virgoJsAgents = agentTokenList.values.filter(filterByVirgoAgentLabel);
+      if (virgoJsAgents.length == 0) {
+        identityClient.sendAuthenticatedApiRequest(agentServiceApiUrl, "POST", {label: agentLabel}, callback);
+      } else {
+        callback(err);
+      }
     });
   },
 ], function (err) {
@@ -20,4 +39,5 @@ async.series([
     return;
   }
   console.log('Identity token obtained');
+  console.log('Agent token obtained');
 });
