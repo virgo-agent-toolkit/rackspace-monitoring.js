@@ -29,6 +29,10 @@ To run the example, you will need to build virgo.js locally.
     $ (cd node_modules/virgo.js/ && make) 
     $ node index.js
 
+Dev Note: You may run into an error, 'UNABLE_TO_VERIFY_LEAF_SIGNATURE'. If so, try running like so:
+
+    $ NODE_TLS_REJECT_UNAUTHORIZED=0 node index.js
+
 Docker Instructions
 ===================   
 Copy the example config file, and replace the example credentials (username and API key) with your own. To obtain
