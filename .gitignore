@@ -2,5 +2,4 @@
 node_modules
 
 # Config Files
-config.js
-config.example
+config.json

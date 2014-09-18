@@ -16,6 +16,7 @@
   "dependencies": {
     "async": "^0.9.0",
     "request": "^2.40.0",
-    "virgo.js": "^0.0.3"
+    "virgo.js": "~0.0.4",
+    "nconf": "~0.6.9"
   }
 }

@@ -1,13 +1,25 @@
 var request = require('request');
 var async = require('async');
 var virgo = require('virgo.js');
-var config = require('./config');
+var nconf = require('nconf');
 var constants = require('./constants');
 var identity = require('./lib/identity');
 
+// Account configuration
+nconf.file({file: './config.json'});
+nconf.defaults({
+  "credentials": {
+    "accountId": '1234',
+    "username": 'YOUR_USERNAME',
+    "apiKey": 'YOUR_APIKEY'
+  }
+});
 
-var identityClient = identity.createClient(config.username, config.apiKey);
-    accountId = config.accountId,
+var accountId = nconf.get('credentials:accountId'),
+    username = nconf.get('credentials:username'),
+    apiKey = nconf.get('credentials:apiKey'),
+
+    identityClient = identity.createClient(username, apiKey),
     agentServiceApiUrl = 'https://monitoring.api.rackspacecloud.com/v1.0/' + accountId + '/agent_tokens',
     agentLabel = 'virgo-js-agent';
 
@@ -17,9 +29,7 @@ function filterByVirgoAgentLabel(agentToken) {
 
 async.auto({
   getIdentityToken: function getIdentityToken(callback) {
-    identityClient.getToken(function(err, token) {
-      callback();
-    });
+    identityClient.getToken(callback);
   },
 
   deleteVirgoTokens: ['getIdentityToken', function deleteExistingVirgoTokens(callback) {
@@ -76,7 +86,7 @@ async.auto({
   }]
 }, function (err) {
   if (err) {
-    console.log(err);
+    console.log('Error: ', err);
     return;
   }
 });

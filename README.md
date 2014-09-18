@@ -15,11 +15,13 @@ Navigate to your new directory and install dependencies
     $ cd rackspace-monitoring.js
     $ npm install
 
-Copy the example config file, and replace the example credentials (username and API key) with your own. To obtain
-your API key, log into your cloud account and go to your account settings.
+Copy the example config file (config.json.example), and replace the 
+example credentials (account, username and API key) with your own. To 
+obtain your API key, log into your cloud account and go to your account 
+settings.
 
-    $ cp config.js.example config.js
-    $ vi config.js
+    $ cp config.json.example config.json
+    $ vi config.json
 
 Running Virgo.js Example
 ========================
